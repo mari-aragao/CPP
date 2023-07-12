@@ -13,11 +13,13 @@ PhoneBook::~PhoneBook(void)
     return ;
 }
 
-void    PhoneBook::add(int n)
+void    PhoneBook::add(void)
 {
     std::string str;
     int i;
 
+    if (this->num == 8)
+        this->num = 7;
     str = "";
     std::cin.clear();
     while (str == "")
@@ -30,7 +32,7 @@ void    PhoneBook::add(int n)
             std::cin.clear();
         }
     }
-    this->contact[n].setFirstName(str);
+    this->contact[this->num].setFirstName(str);
 
     str = "";
     std::cin.clear();
@@ -44,7 +46,7 @@ void    PhoneBook::add(int n)
             std::cin.clear();
         }
     }
-    this->contact[n].setLastName(str);
+    this->contact[this->num].setLastName(str);
 
     str = "";
     std::cin.clear();
@@ -58,7 +60,7 @@ void    PhoneBook::add(int n)
             std::cin.clear();
         }        
     }
-    this->contact[n].setNickName(str);
+    this->contact[this->num].setNickName(str);
     
     str = "";
     std::cin.clear();
@@ -85,7 +87,7 @@ void    PhoneBook::add(int n)
             i++;
         }
     }
-    this->contact[n].setPhoneNumber(str);
+    this->contact[this->num].setPhoneNumber(str);
 
     str = "";
     std::cin.clear();
@@ -99,7 +101,7 @@ void    PhoneBook::add(int n)
             std::cin.clear();
         }        
     }    
-    this->contact[n].setDarkestSecret(str);
+    this->contact[this->num].setDarkestSecret(str);
     
     this->num++;
     return ;
@@ -116,13 +118,10 @@ void    PhoneBook::search(void)
         std::cout << "You haven't saved any contacts yet" << std::endl;
         return ;
     }
-    i = 0;
+    
     std::cout << "     Index|First Name| Last Name|  Nickname" << std::endl;
-    while (i < this->num)
-    {
-        this->printList(contact[i], i);
-        i++;
-    }
+    this->printList(contact);
+    
     std::cin.clear();
     std::cout << "Insert the contact index to see: ";
     std::cin >> index;
@@ -156,8 +155,45 @@ void    PhoneBook::exit(void)
     std::cout << "Exit" << std::endl;
 }
 
-void    PhoneBook::printList(Contact contact, int i)
+void    PhoneBook::printList(Contact *contact)
 {
-    std::cout << i << " | " << contact.getFirstName() << " | " << contact.getLastName() << " | " << contact.getNickName() << std::endl; 
+    int i;
+    i = 0;
+
+    while (i < this->num)
+    {
+        
+        std::cout << std::setw(10) << i << "|" 
+                    << std::setw(10) << strndup(contact[i].getFirstName(), (int)contact[i].getFirstName().size()) << "|" 
+                    << std::setw(10) << strndup(contact[i].getLastName(), (int)contact[i].getLastName().size()) << "|" 
+                    << std::setw(10) << strndup(contact[i].getNickName(), (int)contact[i].getNickName().size()) << std::endl; 
+        i++;
+    }
+    if (this->num == 9)
+    {
+        std::cout << std::setw(10) << i << "|" 
+                    << std::setw(10) << strndup(contact[i].getFirstName(), (int)contact[i].getFirstName().size()) << "|" 
+                    << std::setw(10) << strndup(contact[i].getLastName(), (int)contact[i].getLastName().size()) << "|" 
+                    << std::setw(10) << strndup(contact[i].getNickName(), (int)contact[i].getNickName().size()) << std::endl; 
+        }
     return ;
+}
+
+std::string PhoneBook::strndup(std::string str, int size)
+{
+    std::string    newStr;
+    int i;
+
+    if (size <= 10)
+        return (str);
+    while (i < 9)
+    {  
+        newStr += str.at(i);
+        i++;
+    }
+    newStr += ".";
+
+    std::cout  << std::endl << "str send is : " << str << std::endl;
+    std::cout << "newStr is : "<< newStr << std::endl;
+    return (newStr);  
 }

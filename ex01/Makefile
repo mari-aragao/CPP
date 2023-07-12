@@ -12,7 +12,6 @@ $(NAME):	$(SRCS)
 all:		$(NAME)
 
 clean:
-	rm -rf *.o
 
 fclean:	clean
 	rm -rf $(NAME)
