@@ -192,8 +192,5 @@ std::string PhoneBook::strndup(std::string str, int size)
         i++;
     }
     newStr += ".";
-
-    std::cout  << std::endl << "str send is : " << str << std::endl;
-    std::cout << "newStr is : "<< newStr << std::endl;
     return (newStr);  
 }
