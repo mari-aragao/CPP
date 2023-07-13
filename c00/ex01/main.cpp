@@ -1,4 +1,3 @@
-#include <iostream>
 #include "Contact.hpp"
 #include "PhoneBook.hpp"
 
@@ -8,10 +7,10 @@ int main(void)
     std::string command;
     int i;
    
-    std::cout << "*** My Awesome PhoneBook *** " << std::endl << std::endl;  
+    std::cout << "*** MY PHONEBOOK *** " << std::endl;  
     while (command != "EXIT")
     {
-        std::cout << "Select a option ( ADD, SEARCH or EXIT) : ";
+        std::cout << "Select a option (ADD, SEARCH or EXIT): ";
         std::getline(std::cin >> std::ws, command);
         i = -1;
         while (++i < (int)command.size())

@@ -1,5 +1,4 @@
 #include <iostream>
-#include <sstream>
 #include "PhoneBook.hpp"
 
 PhoneBook::PhoneBook(void)
@@ -80,6 +79,7 @@ void    PhoneBook::add(void)
         {
             if (!isdigit(str.at(i)))
             {
+                std::cout << "Invalid Phone number" << std::endl;
                 str = "";
                 std::cin.clear();
                 break ;
@@ -109,7 +109,6 @@ void    PhoneBook::add(void)
 
 void    PhoneBook::search(void)
 {
-    std::stringstream ss;
     std::string index;
     int i;
 
@@ -128,21 +127,19 @@ void    PhoneBook::search(void)
     i = 0;
     while (i < (int)index.size())
     {
-        if (!isdigit(index.at(i)))
+        if (!isdigit(index.at(i)) || index.at(0) == '0')
         {
             std::cout << "Invalid index" << std::endl;
             return ;
         }
         i++;
     }
-    ss << index;
-    ss >> i;
-    if (i < 0 || i > this->num - 1)
+    if (index.size() > 1 || index > "9" || index.at(0) - '1' > this->num - 1)
     {
         std::cout << "Invalid index" << std::endl;
         return ;
     }
-
+    i = index[0] - '0' - 1;
     std::cout << "First Name: " << this->contact[i].getFirstName() << std::endl;
     std::cout << "Last Name: " << this->contact[i].getLastName() << std::endl;
     std::cout << "Nick Name: " << this->contact[i].getNickName() << std::endl;
@@ -160,22 +157,14 @@ void    PhoneBook::printList(Contact *contact)
     int i;
     i = 0;
 
-    while (i < this->num)
+    while (i < this->num || this->num == 9)
     {
-        
-        std::cout << std::setw(10) << i << "|" 
+        std::cout << std::setw(10) << i + 1 << "|" 
                     << std::setw(10) << strndup(contact[i].getFirstName(), (int)contact[i].getFirstName().size()) << "|" 
                     << std::setw(10) << strndup(contact[i].getLastName(), (int)contact[i].getLastName().size()) << "|" 
                     << std::setw(10) << strndup(contact[i].getNickName(), (int)contact[i].getNickName().size()) << std::endl; 
         i++;
     }
-    if (this->num == 9)
-    {
-        std::cout << std::setw(10) << i << "|" 
-                    << std::setw(10) << strndup(contact[i].getFirstName(), (int)contact[i].getFirstName().size()) << "|" 
-                    << std::setw(10) << strndup(contact[i].getLastName(), (int)contact[i].getLastName().size()) << "|" 
-                    << std::setw(10) << strndup(contact[i].getNickName(), (int)contact[i].getNickName().size()) << std::endl; 
-        }
     return ;
 }
 
