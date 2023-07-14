@@ -5,14 +5,17 @@ SRCS =	Zombie.cpp \
 		randomChump.cpp \
 		main.cpp
 
+OBJS = $(SRCS:.cpp=.o)
+
 FLAGS = -Wall -Wextra -Werror -std=c++98
 
-$(NAME):	$(SRCS)
+$(NAME):	$(OBJS)
 	c++ $(FLAGS) $(SRCS) -o $(NAME)
 
 all:		$(NAME)
 
 clean:
+	rm -rf $(OBJS)
 
 fclean:	clean
 	rm -rf $(NAME)

@@ -5,13 +5,12 @@ void    randomChump(std::string name);
 
 int main(void)
 {
-    Zombie* zombie2;
+    Zombie* zombie1;
 
-    zombie2 = newZombie("zombie2");
-    zombie2->announce();
-    newZombie("zombie3");
-    randomChump("zombie4");
+    zombie1 = newZombie("zombie1");
+    zombie1->announce();
+    randomChump("zombie2");
 
-    delete(zombie2);
+    delete(zombie1);
     return (0);
 }
