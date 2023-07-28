@@ -21,7 +21,7 @@ Fixed::Fixed(int const n)
 Fixed::Fixed(float const n)
 {
     std::cout << "Float constructor called" << std::endl;
-    this->n = round(n * (1 << this->c));
+    this->n = roundf(n * (1 << this->c));
 }
 
 Fixed::~Fixed(void)
