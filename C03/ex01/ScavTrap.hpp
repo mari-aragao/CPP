@@ -26,8 +26,6 @@ public:
 
     ScavTrap &operator=(ScavTrap const &scavTrap);
     friend std::ostream  &operator<<(std::ostream & o, ScavTrap const &scavTrap);
-private:
-
 };
 
 #endif
