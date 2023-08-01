@@ -20,6 +20,7 @@ int main(void)
     scav.takeDamage(10);
     scav.beRepaired(10);
     scav.takeDamage(80);
+    scav.guardGate();
     std::cout << scav << std::endl << std::endl;
     
     
@@ -27,6 +28,7 @@ int main(void)
     scav2.attack("enemy2");
     scav2.takeDamage(10);
     scav2.beRepaired(10);
+    scav.guardGate();
     scav2.takeDamage(15);
     scav2.attack("enemy3");
     std::cout << scav2 << std::endl << std::endl;

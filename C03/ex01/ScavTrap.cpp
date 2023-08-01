@@ -72,7 +72,7 @@ void    ScavTrap::attack(const std::string &target)
 
 void    ScavTrap::guardGate(void)
 {
-    std::cout << "ScavTrap " << _name << "is now in Gate keeper mode." << std::endl;
+    std::cout << "ScavTrap " << _name << " is now in Gate keeper mode." << std::endl;
 }
 
 std::ostream  &operator<<(std::ostream & o, ScavTrap const &scavTrap)
