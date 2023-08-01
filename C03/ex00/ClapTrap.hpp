@@ -19,7 +19,7 @@ class ClapTrap{
 public:
     ClapTrap(void);
     ClapTrap(std::string name);
-    ClapTrap(ClapTrap &clapTrap);
+    ClapTrap(ClapTrap const &clapTrap);
     ~ClapTrap(void);
 
     void    attack(const std::string &target);

@@ -22,7 +22,7 @@ ClapTrap::ClapTrap(std::string name) : _name(name), _hp(10), _ep(10), _ad(0)
     std::cout << "Default constructor called" << std::endl;
 }
 
-ClapTrap::ClapTrap(ClapTrap &clapTrap)
+ClapTrap::ClapTrap(ClapTrap const &clapTrap)
 {
     *this = clapTrap;
     std::cout << "Copy constructor called" << std::endl;
