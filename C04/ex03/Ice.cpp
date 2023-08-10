@@ -6,15 +6,15 @@
 /*   By: maragao <maragao@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 12:56:20 by maragao           #+#    #+#             */
-/*   Updated: 2023/08/05 12:56:20 by maragao          ###   ########.fr       */
+/*   Updated: 2023/08/10 19:10:14 by maragao          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Ice.hpp"
 
-Ice::Ice(void) : _type("ice") {}
+Ice::Ice(void) : AMateria("ice") {}
 
-Ice::Ice(Ice const &ice) : _type(ice._type)
+Ice::Ice(Ice const &ice) : AMateria(ice.getType())
 {
     *this = ice;
 }
@@ -30,7 +30,7 @@ Ice &Ice::operator=(Ice const &ice)
 AMateria    &Ice::clone(void) const
 {
     AMateria *ice = new Ice();
-    return ice;
+    return (*ice);
 }
 
 void    Ice::use(ICharacter &target)

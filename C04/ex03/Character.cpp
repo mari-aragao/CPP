@@ -6,7 +6,7 @@
 /*   By: maragao <maragao@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 13:12:58 by maragao           #+#    #+#             */
-/*   Updated: 2023/08/05 13:12:58 by maragao          ###   ########.fr       */
+/*   Updated: 2023/08/10 19:21:30 by maragao          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ Character::Character(Character const &c) : _name(c._name)
 {
     for (int i = 0; i < 4; i++)
     {
-        _materia[i] = c._materia[i]->clone();
+        _materia[i] = &c._materia[i]->clone();
     }
     *this = c;
 }
@@ -50,7 +50,7 @@ Character   &Character::operator=(Character const &c)
             delete _materia[i];
         _materia[i] = NULL;
         if (c._materia[i])
-            _materia[i] = c._materia[i]->clone();
+            _materia[i] = &c._materia[i]->clone();
     }
     _name = c._name;
     return *this;
@@ -63,7 +63,7 @@ std::string const   &Character::getName(void) const
 
 void    Character::equip(AMateria* m)
 {
-    for (int i = 0; i < 4, i++)
+    for (int i = 0; i < 4; i++)
     {
         if (_materia[i] == NULL)
         {
@@ -75,14 +75,14 @@ void    Character::equip(AMateria* m)
 
 void    Character::unequip(int idx)
 {
-    if (idx < 0 && idx > 4)
+    if (idx < 0 || idx > 4)
         return ;
     _materia[idx] = NULL;
 }
 
 void    Character::use(int idx, ICharacter& target)
 {
-    if (idx < 0 && idx > 4)
+    if (idx < 0 || idx > 4)
         return ;
     if (_materia[idx])
         _materia[idx]->use(target);

@@ -6,7 +6,7 @@
 /*   By: maragao <maragao@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 01:01:42 by maragao           #+#    #+#             */
-/*   Updated: 2023/08/10 01:01:42 by maragao          ###   ########.fr       */
+/*   Updated: 2023/08/10 19:19:59 by maragao          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ MateriaSource::MateriaSource(MateriaSource const & ms)
 {
     for (int i = 0; i < 4; i++)
     {
-        _materia[i] = ms._materia[i]->clone();
+        _materia[i] = &ms._materia[i]->clone();
     }
     *this = ms;
 }
@@ -44,7 +44,7 @@ MateriaSource   &MateriaSource::operator=(MateriaSource const & ms)
             delete _materia[i];
         _materia[i] = NULL;
         if (ms._materia[i])
-            _materia[i] = ms._materia[i]->clone();
+            _materia[i] = &ms._materia[i]->clone();
     }
     return *this;
 }
@@ -55,7 +55,7 @@ void    MateriaSource::learnMateria(AMateria *m)
     {
         if (_materia[i] == NULL)
         {
-            _materia[i] = m->clone();
+            _materia[i] = &m->clone();
             return ;
         }
     }
@@ -65,8 +65,8 @@ AMateria* MateriaSource::createMateria(std::string const & type)
 {
     for (int i = 0; i < 4; i++)
     {
-        if (_materia[i].getType() == type)
-            return _materia[i]->clone();
+        if (_materia[i]->getType() == type)
+            return &_materia[i]->clone();
     }
     return NULL;
 }

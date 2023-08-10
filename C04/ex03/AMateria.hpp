@@ -6,7 +6,7 @@
 /*   By: maragao <maragao@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 12:47:06 by maragao           #+#    #+#             */
-/*   Updated: 2023/08/05 12:47:06 by maragao          ###   ########.fr       */
+/*   Updated: 2023/08/10 18:59:35 by maragao          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define AMATERIA_HPP
 #include "ICharacter.hpp"
 # include <iostream>
+
+class ICharacter;
 
 class AMateria
 {
