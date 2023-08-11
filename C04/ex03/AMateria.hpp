@@ -26,7 +26,7 @@ public:
     AMateria(void);
     AMateria(std::string const &type);
     AMateria(AMateria const & materia);
-    ~AMateria(void);
+    virtual ~AMateria(void);
     AMateria            &operator=(AMateria const & materia);
     
     std::string const   &getType(void) const;

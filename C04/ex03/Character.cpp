@@ -67,6 +67,7 @@ void    Character::equip(AMateria* m)
     {
         if (_materia[i] == NULL)
         {
+            std::cout << "Equip Character slot at index " << i << " with " << m->getType() << std::endl;
             _materia[i] = m;
             return ;
         }
@@ -75,15 +76,18 @@ void    Character::equip(AMateria* m)
 
 void    Character::unequip(int idx)
 {
-    if (idx < 0 || idx > 4)
+    if (!(idx >= 0 && idx < 4))
         return ;
     _materia[idx] = NULL;
+    std::cout << "Unequip Character slot at index " << idx << std::endl;
 }
 
 void    Character::use(int idx, ICharacter& target)
 {
-    if (idx < 0 || idx > 4)
+    if (!(idx >= 0 && idx < 4))
         return ;
     if (_materia[idx])
         _materia[idx]->use(target);
+    else
+        std::cout << "Character slot at index " << idx << " is empty" << std::endl;
 }
