@@ -15,25 +15,7 @@
 #include <stdexcept>
 #include <iostream>
 
-class TooHighException : public std::exception
-{
-public:
-    virtual const char* what() const throw()
-    {
-        return ("Bureaucrat::GradeTooHighException");
-    }
-};
-
-class TooLowException : public std::exception
-{
-public:
-    virtual const char* what() const throw()
-    {
-        return ("Bureaucrat::GradeTooLowException");
-    }
-};
-
-class Bureaucrat : public TooHighException, public TooLowException
+class Bureaucrat
 {
 private:
     std::string _name;
