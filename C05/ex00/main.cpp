@@ -22,7 +22,7 @@ int main(void)
         Bureaucrat b2("b2", 1);
         std::cout << b2 << std::endl;
         
-        Bureaucrat b3("b3", 150);
+        Bureaucrat b3(b2);
         std::cout << b3 << std::endl;
 
         b1.incrementGrade();

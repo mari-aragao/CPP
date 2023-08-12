@@ -30,12 +30,7 @@ Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name)
         _grade = grade;
 }
 
-Bureaucrat::Bureaucrat(Bureaucrat const &b)
-{
-    //_name = b._name;
-    //_grade = b._grade;
-    *this = b;
-}
+Bureaucrat::Bureaucrat(Bureaucrat const &b) : _name(b._name), _grade(b._grade) {}
 
 Bureaucrat::~Bureaucrat(void) throw()
 {
