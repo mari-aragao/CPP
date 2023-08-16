@@ -6,7 +6,7 @@
 /*   By: maragao <maragao@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 10:37:22 by maragao           #+#    #+#             */
-/*   Updated: 2023/08/16 15:49:42 by maragao          ###   ########.fr       */
+/*   Updated: 2023/08/16 15:52:15 by maragao          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,15 @@ int main()
     for (int i = 0; i < 2; i++)
         delete animals[i];
 
-    std::cout << std::endl;
+    {
+    std::cout << std::endl << "--- Testing Dog deep copy ---" << std::endl;
     Dog teste;
     Dog tmp = teste;
+    }
+    {
+    std::cout << std::endl << "--- Testing Cat deep copy ---" << std::endl;
+    Cat teste;
+    Cat tmp = teste;
+    }
     return 0;
 }
