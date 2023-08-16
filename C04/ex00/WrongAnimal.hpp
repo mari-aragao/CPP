@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   WrongAnimal.hpp                                         :+:      :+:    :+:   */
+/*   WrongAnimal.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maragao <maragao@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 10:25:29 by maragao           #+#    #+#             */
-/*   Updated: 2023/08/05 10:25:29 by maragao          ###   ########.fr       */
+/*   Updated: 2023/08/16 15:43:12 by maragao          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ public:
     WrongAnimal(WrongAnimal const &wrongAnimal);
     virtual ~WrongAnimal(void);
 
-    virtual void    makeSound(void) const;
+    void    makeSound(void) const;
     std::string    getType(void) const;
     WrongAnimal  &operator=(WrongAnimal const &wrongAnimal);
 
