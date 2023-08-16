@@ -1,5 +1,7 @@
 NAME = ex03
 
+CXX = c++
+
 SRCS =	main.cpp \
 		AMateria.cpp \
 		Ice.cpp \
@@ -12,7 +14,7 @@ OBJS = $(SRCS:.cpp=.o)
 FLAGS = -Wall -Wextra -Werror -std=c++98
 
 $(NAME):	$(OBJS)
-	c++ $(FLAGS) $(SRCS) -o $(NAME)
+	$(CXX) $(FLAGS) $(SRCS) -o $(NAME)
 
 all:		$(NAME)
 
