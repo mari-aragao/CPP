@@ -6,15 +6,13 @@
 /*   By: maragao <maragao@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 10:37:22 by maragao           #+#    #+#             */
-/*   Updated: 2023/08/05 10:37:22 by maragao          ###   ########.fr       */
+/*   Updated: 2023/08/16 15:56:47 by maragao          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Animal.hpp"
 #include "Dog.hpp"
 #include "Cat.hpp"
-#include "WrongAnimal.hpp"
-#include "WrongCat.hpp"
 #include "Brain.hpp"
 
 int main()
@@ -32,6 +30,7 @@ int main()
     for (int i = 0; i < 2; i++)
         delete animals[i];
 
+    //Animal animal;
     //const Animal* animal = new Animal();
     return 0;
 }

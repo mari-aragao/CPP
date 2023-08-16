@@ -6,7 +6,7 @@
 /*   By: maragao <maragao@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 10:31:57 by maragao           #+#    #+#             */
-/*   Updated: 2023/08/05 10:31:57 by maragao          ###   ########.fr       */
+/*   Updated: 2023/08/16 15:53:18 by maragao          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ Cat::Cat(void)
 Cat::Cat(Cat const &cat) : Animal()
 {
     std::cout << "Cat copy constructor called" << std::endl;
-    *this = cat;
+    brain = new Brain(*cat.brain);
+    type = cat.type;
 }
 
 Cat::~Cat(void)
@@ -31,9 +32,13 @@ Cat::~Cat(void)
     delete brain;
 }
 
+
 Cat  &Cat::operator=(Cat const &cat)
 {
     type = cat.type;
+    if (brain)
+	    delete brain;
+    brain = new Brain(*cat.brain);
     return (*this);
 }
 
