@@ -6,7 +6,7 @@
 /*   By: maragao <maragao@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 02:19:31 by maragao           #+#    #+#             */
-/*   Updated: 2023/08/12 02:19:31 by maragao          ###   ########.fr       */
+/*   Updated: 2023/08/17 17:56:23 by maragao          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #define SHRUBBERYCREATIONFORM_HPP
 
 #include "AForm.hpp"
+#include "fstream"
 
 class ShrubberyCreationForm : public AForm 
 {

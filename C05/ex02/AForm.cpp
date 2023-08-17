@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   AForm.cpp                                           :+:      :+:    :+:   */
+/*   AForm.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maragao <maragao@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 00:57:18 by maragao           #+#    #+#             */
-/*   Updated: 2023/08/12 00:57:18 by maragao          ###   ########.fr       */
+/*   Updated: 2023/08/17 17:55:02 by maragao          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "AForm.hpp"
 
 AForm::AForm(void) :
-    _name("form"), _isSign(false), _gToSign(1),
+    _name("form"), _target("target"), _isSign(false), _gToSign(1),
     _gToExecute(1) {}
 
 AForm::AForm(AForm const &f) :
-    _name(f._name), _isSign(false), _gToSign(f._gToSign), _gToExecute(f._gToExecute) {}
+    _name(f._name), _target(f._target), _isSign(false), _gToSign(f._gToSign), _gToExecute(f._gToExecute) {}
 
 
 AForm::AForm(std::string const name, int const gToSign, int const gToExecute) :
-    _name(name), _isSign(false), _gToSign(gToSign), _gToExecute(gToExecute)
+    _name(name), _target(name), _isSign(false), _gToSign(gToSign), _gToExecute(gToExecute)
 {
     if (_gToSign < 1 || _gToExecute < 1)
         throw TooHighException();
@@ -37,6 +37,7 @@ AForm::~AForm(void) throw()
 AForm    &AForm::operator=(AForm const &f)
 {
     _isSign = f._isSign;
+    _target = f._target;
     return *this;
 }
 
@@ -65,6 +66,16 @@ void    AForm::beSign(Bureaucrat const &b)
     if (b.getGrade() > _gToSign)
         throw TooLowException();
     _isSign = true;
+}
+
+void	AForm::setTarget(std::string target)
+{
+	_target = target;
+}
+
+std::string	AForm::getTarget(void) const
+{
+	return _target;
 }
 
 std::ostream &operator<<(std::ostream &o, AForm const &f)
