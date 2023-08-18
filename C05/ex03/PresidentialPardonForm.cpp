@@ -42,7 +42,10 @@ PresidentialPardonForm  &PresidentialPardonForm::operator=(PresidentialPardonFor
 void    PresidentialPardonForm::execute(Bureaucrat const & executor) const
 {
     if (getIsSign() == true && executor.getGrade() <= getGradeRequiredToExecute())
-	    std::cout << getTarget() << " has been pardoned by Zaphod Beeblebrox" << std::endl;
+        std::cout << getTarget() << " has been pardoned by Zaphod Beeblebrox" << std::endl;
     else
+    {
+        std::cerr << executor.getName() << " couldn't execute " << getName() << std::endl;
 	    throw TooLowException();
+    }
 }

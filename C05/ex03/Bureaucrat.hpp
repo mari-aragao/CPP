@@ -21,7 +21,7 @@ class AForm;
 class Bureaucrat
 {
 private:
-    std::string _name;
+    std::string const _name;
     int         _grade;
 
 public:
@@ -37,6 +37,7 @@ public:
     void        incrementGrade(void);
     void        decrementGrade(void);
     void        signForm(AForm &f);
+    void        executeForm(AForm const & form);
 
     class TooHighException : public std::exception
     {

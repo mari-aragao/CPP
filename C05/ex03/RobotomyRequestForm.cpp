@@ -42,8 +42,11 @@ RobotomyRequestForm  &RobotomyRequestForm::operator=(RobotomyRequestForm const &
 void    RobotomyRequestForm::execute(Bureaucrat const & executor) const
 {
     if (getIsSign() == true && executor.getGrade() <= getGradeRequiredToExecute())
-	    std::cout << "**making some drilling noises**" << std::endl
+        std::cout << "**making some drilling noises**" << std::endl
 		    << getTarget() << " has been robotomized successfully 50% of the time" << std::endl;
     else
+    {
+        std::cerr << executor.getName() << " couldn't execute " << getName() << std::endl;
 	    throw TooLowException();
+    }
 }

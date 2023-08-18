@@ -50,8 +50,11 @@ AForm *Intern::makeForm(std::string name, std::string target)
     for (int i = 0; i < 3; i++)
     {
         if (name == nameForms[i])
+        {
+            std::cout << "Intern creates " << name << std::endl;
             return (this->*returnForm[i])(target);
+        }
     }
-    std::cerr << "Invalid Form name" << std::endl;
+    std::cerr << "Intern can't create " << target << " because " << name << " is not an valid form" << std::endl;
     return NULL;
 }

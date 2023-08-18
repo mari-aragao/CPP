@@ -60,7 +60,10 @@ void    ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 		    << "        |   |" <<std::endl
 		    << " ~~~~~~~~~~~~~~~~~~~" << std::endl;
 	    file.close();
-    }
-    else
+	}
+	else
+    {
+        std::cerr << executor.getName() << " couldn't execute " << getName() << std::endl;
 	    throw TooLowException();
+    }
 }
