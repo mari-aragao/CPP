@@ -17,15 +17,9 @@ Bureaucrat::Bureaucrat(void) : _name("bureaucrat"), _grade(150) {}
 Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name)
 {
     if (grade < 1)
-    {
-        _grade = 1;
         throw TooHighException();
-    }
     else if (grade > 150)
-    {
-        _grade = 150;
         throw TooLowException();
-    }
     else
         _grade = grade;
 }
@@ -39,7 +33,6 @@ Bureaucrat::~Bureaucrat(void) throw()
 
 Bureaucrat &Bureaucrat::operator=(Bureaucrat const &b)
 {
-    _name = b._name;
     _grade = b._grade;
     return *this;
 }

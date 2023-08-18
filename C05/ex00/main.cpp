@@ -29,17 +29,12 @@ int main(void)
         std::cout << b1 << std::endl;
         b2.decrementGrade();
         std::cout << b2 << std::endl;
-        b1.incrementGrade();
-        std::cout << b1 << std::endl;
-        
-        //Bureaucrat b5("b5", 151);
-        //Bureaucrat b4("b4", 0);    
+        b1.incrementGrade(); // Exception: Bureaucrat::GradeTooHighException
+        //Bureaucrat b4("b4", 0);   // Exception: Bureaucrat::GradeTooHighException
+        //Bureaucrat b5("b5", 151); // Exception: Bureaucrat::GradeTooLowException
+
     }
-    catch (Bureaucrat::TooHighException & e)
-    {
-        std::cout << e.what() << std::endl;
-    }
-    catch (Bureaucrat::TooLowException & e)
+    catch (std::exception & e)
     {
         std::cout << e.what() << std::endl;
     }
