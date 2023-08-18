@@ -17,15 +17,9 @@ Bureaucrat::Bureaucrat(void) : _name("bureaucrat"), _grade(150) {}
 Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name)
 {
     if (grade < 1)
-    {
-        _grade = 1;
         throw TooHighException();
-    }
     else if (grade > 150)
-    {
-        _grade = 150;
         throw TooLowException();
-    }
     else
         _grade = grade;
 }
@@ -39,7 +33,6 @@ Bureaucrat::~Bureaucrat(void) throw()
 
 Bureaucrat &Bureaucrat::operator=(Bureaucrat const &b)
 {
-    _name = b._name;
     _grade = b._grade;
     return *this;
 }
@@ -77,10 +70,16 @@ void        Bureaucrat::signForm(AForm &f)
     else if (f.getIsSign() == false)
     {
         if (_grade <= f.getGradeRequiredToSign())
-            std::cout << _name << " didn't required to sign " << f.getName() << " yet" << std::endl;
+            std::cout << _name << " couldn't sign " << f.getName() << " because he didn't request yet" << std::endl;
         else if (_grade > f.getGradeRequiredToSign())
-            std::cout << _name << " can't sign " << f.getName() << " because bureaucrat's grade is too low" << std::endl;
+            std::cout << _name << " couldn't sign " << f.getName() << " because bureaucrat's grade is too low" << std::endl;
     }
+}
+
+void        Bureaucrat::executeForm(AForm const & form)
+{
+    form.execute(*this);
+    std::cout << _name << " executed " << form.getName() << std::endl;
 }
 
 std::ostream  &operator<<(std::ostream & o, Bureaucrat const & b)

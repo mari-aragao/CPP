@@ -34,24 +34,29 @@ int main(void)
         b1.signForm(ppf);
         scf.beSign(b1);
         b1.signForm(scf);
-        scf.execute(b1);
+        //scf.execute(b1);
+        b1.executeForm(scf);
 
         std::cout << std::endl;
         b2.signForm(rrf);
         b2.signForm(ppf);
         rrf.beSign(b2);
         b2.signForm(rrf);
-        rrf.execute(b2);
+        //rrf.execute(b2);
+        b2.executeForm(rrf);
         
         std::cout << std::endl;
         b3.signForm(ppf);
         ppf.beSign(b3);
         b3.signForm(ppf);
-        ppf.execute(b3);
+        //ppf.execute(b3);
+        b3.executeForm(ppf);
 
         std::cout << std::endl;
-        //rrf.execute(b1);
-        //ppf.execute(b1);  
+        //rrf.execute(b1); // Exception: AForm::GradeTooLowException
+        //b1.executeForm(rrf); // Exception: AForm::GradeTooLowException
+        //ppf.execute(b1);  // Exception: AForm::GradeTooLowException
+        //b1.executeForm(ppf); // Exception: AForm::GradeTooLowException
     }
     catch (std::exception & e)
     {
