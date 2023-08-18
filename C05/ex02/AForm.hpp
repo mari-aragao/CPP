@@ -33,8 +33,7 @@ public:
     AForm(AForm const &f);
     virtual ~AForm(void) throw();
     AForm    &operator=(AForm const &f);
-    friend std::ostream &operator<<(std::ostream &o, AForm const &f);
-
+    
     std::string getName(void) const;
     bool        getIsSign(void) const;
     int         getGradeRequiredToSign(void) const;
@@ -62,4 +61,7 @@ public:
         }
     };
 };
+
+std::ostream &operator<<(std::ostream &o, AForm const &f);
+
 #endif

@@ -32,7 +32,6 @@ public:
     Form(Form const &f);
     virtual ~Form(void) throw();
     Form    &operator=(Form const &f);
-    friend std::ostream &operator<<(std::ostream &o, Form const &f);
 
     std::string getName(void) const;
     bool        getIsSign(void) const;
@@ -58,4 +57,7 @@ public:
         }
     };
 };
+
+std::ostream &operator<<(std::ostream &o, Form const &f);
+
 #endif

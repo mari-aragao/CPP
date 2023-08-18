@@ -31,8 +31,7 @@ public:
     virtual ~Bureaucrat(void) throw();
 
     Bureaucrat &operator=(Bureaucrat const &b);
-    friend std::ostream  &operator<<(std::ostream & o, Bureaucrat const &b);
-
+    
     std::string getName(void) const;
     int         getGrade(void) const;
     void        incrementGrade(void);
@@ -57,5 +56,7 @@ public:
         }
     };    
 };
+
+std::ostream  &operator<<(std::ostream & o, Bureaucrat const &b);
 
 #endif
