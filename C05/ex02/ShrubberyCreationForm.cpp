@@ -41,7 +41,7 @@ ShrubberyCreationForm  &ShrubberyCreationForm::operator=(ShrubberyCreationForm c
 
 void    ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 {
-    if (getIsSign() == true && getGradeRequiredToExecute() <= 137)
+    if (getIsSign() == true && executor.getGrade() <= getGradeRequiredToExecute())
     {
 	    std::fstream	file;
 	    std::string		fileName = getTarget().append("_shrubbery");

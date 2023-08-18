@@ -19,7 +19,7 @@ PresidentialPardonForm::PresidentialPardonForm(void) : AForm("Presidential Pardo
 
 PresidentialPardonForm::PresidentialPardonForm(std::string target) : AForm("Presidential Pardon", 25, 5)
 {
-	setTarget("ppf");
+	setTarget(target);
 }
 
 PresidentialPardonForm::PresidentialPardonForm(PresidentialPardonForm const &ppf) :
@@ -41,8 +41,8 @@ PresidentialPardonForm  &PresidentialPardonForm::operator=(PresidentialPardonFor
 
 void    PresidentialPardonForm::execute(Bureaucrat const & executor) const
 {
-    if (getIsSign() == true && getGradeRequiredToExecute() <= 5)
-	std::cout << getTarget() << " has been pardoned by Zaphod Beeblebrox" << std::endl;
+    if (getIsSign() == true && executor.getGrade() <= getGradeRequiredToExecute())
+	    std::cout << getTarget() << " has been pardoned by Zaphod Beeblebrox" << std::endl;
     else
 	    throw TooLowException();
 }

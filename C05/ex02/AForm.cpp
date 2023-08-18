@@ -31,7 +31,7 @@ AForm::AForm(std::string const name, int const gToSign, int const gToExecute) :
 
 AForm::~AForm(void) throw()
 {
-    std::cout << "Destructor " << _name << "called" << std::endl;
+    std::cout << "AForm Destructor " << _target << " called" << std::endl;
 }
 
 AForm    &AForm::operator=(AForm const &f)
