@@ -1,9 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Fixed.hpp                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: maragao <maragao@student.42.rio>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/08/19 01:16:33 by maragao           #+#    #+#             */
+/*   Updated: 2023/08/19 01:16:33 by maragao          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FIXED_HPP
 # define FIXED_HPP
 # include "iostream"
 # include <cmath>
 
-class Fixed{
+class Fixed
+{
 public:
     Fixed(void);
     Fixed(int const n);
