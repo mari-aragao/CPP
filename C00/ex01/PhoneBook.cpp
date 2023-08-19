@@ -1,16 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   PhoneBook.cpp                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: maragao <maragao@student.42.rio>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/08/19 01:05:30 by maragao           #+#    #+#             */
+/*   Updated: 2023/08/19 01:05:30 by maragao          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <iostream>
 #include "PhoneBook.hpp"
 
 PhoneBook::PhoneBook(void)
 {
     this->num = 0;
-    return ;
 }
 
-PhoneBook::~PhoneBook(void)
-{
-    return ;
-}
+PhoneBook::~PhoneBook(void) {}
 
 void    PhoneBook::add(void)
 {

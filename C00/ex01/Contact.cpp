@@ -1,45 +1,45 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Contact.cpp                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: maragao <maragao@student.42.rio>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/08/19 01:03:43 by maragao           #+#    #+#             */
+/*   Updated: 2023/08/19 01:03:43 by maragao          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Contact.hpp"
 #include <iostream>
 
+Contact::Contact(void) {}
 
-Contact::Contact(void)
-{
-    return ;
-}
-
-Contact::~Contact(void)
-{
-    return ;
-}
+Contact::~Contact(void) {}
 
 void    Contact::setFirstName(std::string firstName)
 {
     this->firstName = firstName;
-    return ;
 }
 
 void    Contact::setLastName(std::string lastName)
 {
     this->lastName = lastName;
-    return ;
 }
 
 void        Contact::setNickName(std::string nickName)
 {
     this->nickName = nickName;
-    return ;
 }
 
 void        Contact::setPhoneNumber(std::string phoneNumber)
 {
     this->phoneNumber = phoneNumber;
-    return ;
 }
 
 void        Contact::setDarkestSecret(std::string darkestSecret)
 {
     this->darkestSecret = darkestSecret;
-    return ;
 }
 
 std::string Contact::getFirstName(void)
