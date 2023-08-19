@@ -96,11 +96,3 @@ void    ClapTrap::beRepaired(unsigned int amount)
         _ep--;
     }
 }
-
-std::ostream  &operator<<(std::ostream & o, ClapTrap const &clapTrap)
-{
-    o << "ClapTrap " << clapTrap._name
-    << " has " << clapTrap._hp << " of hit points and "
-    << clapTrap._ep << " of energy points" << std::endl;
-    return o;
-}

@@ -54,12 +54,3 @@ void    FragTrap::highFivesGuys(void)
 {
     std::cout << "FragTrap " << _name << " gives high five guys" << std::endl;
 }
-
-std::ostream  &operator<<(std::ostream & o, FragTrap const &fragTrap)
-{
-    o << "FragTrap " << fragTrap._name
-    << " has " << fragTrap._ad << " of attack damage, "
-    << fragTrap._hp << " of hit points and "
-    << fragTrap._ep << " of energy points" << std::endl;
-    return o;
-}

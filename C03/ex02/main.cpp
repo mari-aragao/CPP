@@ -22,7 +22,7 @@ int main(void)
     frag.beRepaired(10);
     frag.takeDamage(80);
     frag.highFivesGuys();
-    std::cout << frag << std::endl << std::endl;
+    std::cout << std::endl;
     
     
     FragTrap frag2(frag);
@@ -32,7 +32,7 @@ int main(void)
     frag2.takeDamage(15);
     frag2.attack("enemy3");
     frag2.highFivesGuys();
-    std::cout << frag2 << std::endl << std::endl;
+    std::cout << std::endl;
     
     return 0;
 }

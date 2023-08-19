@@ -74,12 +74,3 @@ void    ScavTrap::guardGate(void)
 {
     std::cout << "ScavTrap " << _name << " is now in Gate keeper mode." << std::endl;
 }
-
-std::ostream  &operator<<(std::ostream & o, ScavTrap const &scavTrap)
-{
-    o << "ScavTrap " << scavTrap._name
-    << " has " << scavTrap._ad << " of attack damage, "
-    << scavTrap._hp << " of hit points and "
-    << scavTrap._ep << " of energy points" << std::endl;
-    return o;
-}

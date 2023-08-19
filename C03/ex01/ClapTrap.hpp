@@ -27,8 +27,7 @@ public:
     void    beRepaired(unsigned int amount);
 
     ClapTrap &operator=(ClapTrap const &clapTrap);
-    friend std::ostream  &operator<<(std::ostream & o, ClapTrap const &clapTrap);
-
+    
 protected:
     std::string     _name;
     unsigned int    _hp;

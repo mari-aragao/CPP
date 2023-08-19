@@ -21,7 +21,7 @@ int main(void)
     scav.beRepaired(10);
     scav.takeDamage(80);
     scav.guardGate();
-    std::cout << scav << std::endl << std::endl;
+    std::cout << std::endl << std::endl;
     
     
     ScavTrap scav2(scav);
@@ -31,7 +31,7 @@ int main(void)
     scav.guardGate();
     scav2.takeDamage(15);
     scav2.attack("enemy3");
-    std::cout << scav2 << std::endl << std::endl;
+    std::cout << std::endl;
     
     return 0;
 }

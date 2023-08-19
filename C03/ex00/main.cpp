@@ -20,7 +20,7 @@ int main(void)
     clap.beRepaired(10);
     clap.takeDamage(2);
 
-    std::cout << clap << std::endl << std::endl;
+    std::cout << std::endl;
 
     ClapTrap clap2(clap);
     clap.attack("enemy2");
@@ -28,6 +28,6 @@ int main(void)
     clap2.takeDamage(10);
     clap2.beRepaired(10);
 
-    std::cout << clap2 << std::endl;
+    std::cout << std::endl;
     return 0;
 }

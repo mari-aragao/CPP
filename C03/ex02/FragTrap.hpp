@@ -24,6 +24,5 @@ public:
     void    highFivesGuys(void);
 
     FragTrap &operator=(FragTrap const &fragTrap);
-    friend std::ostream  &operator<<(std::ostream & o, FragTrap const &fragTrap);
 };
 #endif

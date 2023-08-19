@@ -25,7 +25,6 @@ public:
     void    attack(const std::string &target);
 
     ScavTrap &operator=(ScavTrap const &scavTrap);
-    friend std::ostream  &operator<<(std::ostream & o, ScavTrap const &scavTrap);
 };
 
 #endif
