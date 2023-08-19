@@ -1,16 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Harl.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: maragao <maragao@student.42.rio>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/08/19 01:14:25 by maragao           #+#    #+#             */
+/*   Updated: 2023/08/19 01:14:25 by maragao          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Harl.hpp"
 
 typedef void (Harl::*PtrFunction) (void);
 
-Harl::Harl(void)
-{
+Harl::Harl(void) {}
 
-}
-
-Harl::~Harl(void)
-{
-
-}
+Harl::~Harl(void) {}
 
 void    Harl::debug(void)
 {

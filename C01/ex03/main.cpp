@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: maragao <maragao@student.42.rio>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/08/19 01:12:52 by maragao           #+#    #+#             */
+/*   Updated: 2023/08/19 01:12:52 by maragao          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Weapon.hpp"
 #include "HumanA.hpp"
 #include "HumanB.hpp"
@@ -19,6 +31,5 @@ int main()
         club.setType("some other type of club");
         jim.attack();
     }
-    
     return 0;
 }
