@@ -12,10 +12,9 @@
 
 #include "ScalarConverter.hpp"
 
+ScalarConverter::ScalarConverter(void) : _c('\0'), _i(0), _f(0.0f), _d(0.0) {}
 
-ScalarConverter::ScalarConverter(void) : _s(NULL), _c(0), _i(0), _f(0), _d(0) {}
-
-ScalarConverter::ScalarConverter(std::string s) : _s(s), _c(0), _i(0), _f(0), _d(0) {} 
+ScalarConverter::ScalarConverter(std::string s) : _s(s), _c('\0'), _i(0), _f(0.0f), _d(0.0) {} 
 
 ScalarConverter::ScalarConverter(ScalarConverter const &sc)
 {
@@ -33,7 +32,37 @@ ScalarConverter &ScalarConverter::operator=(ScalarConverter const &sc)
     _d = sc._d;
 }
 
-void    ScalarConverter::converter(std::string s) {}
+void    ScalarConverter::converter(std::string s)
+{
+    if (isChar())
+    {
+        _c = (_s.at(0));
+        _i = static_cast<int>(_c);
+        _f = static_cast<float>(_c);
+        _d = static_cast<double>(_c);
+    }
+    else if (isInt())
+    {
+        _i = std::stoi(_s, NULL, 10);
+        _c = static_cast<char>(_i);
+        _f = static_cast<float>(_i);
+        _d = static_cast<double>(_i);
+    }
+    else if (isFloat())
+    {
+        _f = std::stof(_s, NULL);
+        _c = static_cast<char>(_f);
+        _i = static_cast<int>(_f);
+        _d = static_cast<double>(_f);
+    }
+    else if (isDouble())
+    {
+        _d = std::stod(_s, NULL);
+        _c = static_cast<char>(_d);
+        _i = static_cast<int>(_d);
+        _f = static_cast<float>(_d);
+    }
+}
 
 void    ScalarConverter::printValues(char c, int i, float f, double d,
             std::string sChar, std::string sInt, std::string sFloat, std::string sDouble)
@@ -63,17 +92,84 @@ void    ScalarConverter::printValues(char c, int i, float f, double d,
         std::cout << d << std::endl;
 }
 
-bool    ScalarConverter::isChar(void){}
+bool    ScalarConverter::isChar(void)
+{
+    if (_s.size() == 1 && isalpha(_s.at(0)) && isprint(_s.at(0)))
+        return true;
+    return false;
+}
 
-bool    ScalarConverter::isInt(void) {}
+bool    ScalarConverter::isInt(void)
+{
+    for (int i = 0; i < _s.size(); i++)
+    {
+        if (i == 0 && (_s.at(i) == '-' || _s.at(i) == '+'))
+            continue ;
+        else if (!isdigit(_s.at(i)))
+            return false ;
+    }
+    return true;
+}
 
-bool    ScalarConverter::isFloat(void) {}
+bool    ScalarConverter::isFloat(void)
+{
+    int countPoints = 0;
 
-bool    ScalarConverter::isDouble(void) {}
+    if (_s.at(_s.size()) != 'f')
+        return false;
+    for (int i = 0; i < _s.size() - 1; i++)
+    {
+        if (i == 0 && (_s.at(i) == '-' || _s.at(i) == '+'))
+            continue ;
+        else if (_s.at(i) == '.')
+        {
+            if (i > 0 && (!isdigit(_s.at(i - 1)) || !isdigit(_s.at(i + 1))))
+                return false;
+            countPoints++;
+            if (countPoints > 1)
+                return false;
+        }
+        else if (!isdigit(_s.at(i)))
+            return false ;
+    }
+    return true;
+}
 
-bool    ScalarConverter::isImpossibleChar(void) {}
+bool    ScalarConverter::isDouble(void)
+{
+    int countPoints = 0;
+    
+    for (int i = 0; i < _s.size(); i++)
+    {
+        if (i == 0 && (_s.at(i) == '-' || _s.at(i) == '+'))
+            continue ;
+        else if (_s.at(i) == '.')
+        {
+            if (i > 0 && (i + 1 < _s.size()) && (!isdigit(_s.at(i - 1)) || !isdigit(_s.at(i + 1))))
+                return false;
+            countPoints++;
+            if (countPoints > 1)
+                return false;
+        }
+        else if (!isdigit(_s.at(i)))
+            return false ;
+    }
+    return true;
+}
 
-bool    ScalarConverter::isImpossibleInt(void) {}
+bool    ScalarConverter::isImpossibleChar(void)
+{
+    if (isNan() || isPosInf() || isNegInf())
+        return true;
+    return false;
+}
+
+bool    ScalarConverter::isImpossibleInt(void)
+{
+    if (isNan())
+        return true;
+    return false;
+}
 
 bool    ScalarConverter::isImpossibleFloat(void) {}
 
