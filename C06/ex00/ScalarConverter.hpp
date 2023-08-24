@@ -14,6 +14,7 @@
 # define SCALARCONVERTER_HPP
 #include <iostream>
 #include <string>
+#include <sstream>
 
 class ScalarConverter
 {
@@ -24,28 +25,18 @@ public:
     ~ScalarConverter(void);
     ScalarConverter &operator=(ScalarConverter const &sc);
 
-    void    converter(std::string s);
-    void    printValues(char c, int i, float f, double d,
+    static void    converter(std::string s, char &_c, int &_i, float &_f, double &_d);
+    static void    printValues(char c, int i, float f, double d,
                 std::string sChar, std::string sInt, std::string sFloat, std::string sDouble);
-    
-    bool    isChar(void);
-    bool    isInt(void);
-    bool    isFloat(void);
-    bool    isDouble(void);
-    bool    isImpossibleChar(void);
-    bool    isImpossibleInt(void);
-    bool    isImpossibleFloat(void);
-    bool    isImpossibleDouble(void);
-    bool    isNan(void);
-    bool    isNegInf(void);
-    bool    isPosInf(void);
-
-private:
-    std::string _s;
-    char        _c;
-    int         _i;
-    float       _f;
-    double      _d;
+    static void    checks(std::string s, char &_c, int &_i, float &_f, double &_d);
+    static bool    isChar(std::string s);
+    static bool    isInt(std::string s);
+    static bool    isFloat(std::string s);
+    static bool    isDouble(std::string s);
+    static bool    isZero(std::string s);
+    static bool    isNan(std::string s);
+    static bool    isNegInf(std::string s);
+    static bool    isPosInf(std::string s);
 };
 
 #endif

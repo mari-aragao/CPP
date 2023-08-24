@@ -19,8 +19,6 @@ int main(int argc, char **argv)
         std::cerr << "Invalid input" << std::endl;
         return (1);
     }
-
     ScalarConverter sc(static_cast<std::string>(argv[1]));
-    
     return (0);
 }

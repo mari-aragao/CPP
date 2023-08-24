@@ -12,9 +12,17 @@
 
 #include "ScalarConverter.hpp"
 
-ScalarConverter::ScalarConverter(void) : _c('\0'), _i(0), _f(0.0f), _d(0.0) {}
+ScalarConverter::ScalarConverter(void) {}
 
-ScalarConverter::ScalarConverter(std::string s) : _s(s), _c('\0'), _i(0), _f(0.0f), _d(0.0) {} 
+ScalarConverter::ScalarConverter(std::string s)
+{
+    char    _c = '\0';
+    int     _i = 0;
+    float   _f = 0.0f;
+    double  _d = 0.0;
+    converter(s, _c, _i, _f, _d);
+    checks(s, _c, _i, _f, _d);
+} 
 
 ScalarConverter::ScalarConverter(ScalarConverter const &sc)
 {
@@ -25,39 +33,37 @@ ScalarConverter::~ScalarConverter(void) {}
 
 ScalarConverter &ScalarConverter::operator=(ScalarConverter const &sc)
 {
-    _s = sc._s;
-    _c = sc._c;
-    _i = sc._i;
-    _f = sc._f;
-    _d = sc._d;
+    (void)sc;
+    return *this;
 }
 
-void    ScalarConverter::converter(std::string s)
+
+void    ScalarConverter::converter(std::string s, char &_c, int &_i, float &_f, double &_d)
 {
-    if (isChar())
+    if (isChar(s))
     {
-        _c = (_s.at(0));
+        _c = static_cast<char>(s.at(0));
         _i = static_cast<int>(_c);
         _f = static_cast<float>(_c);
         _d = static_cast<double>(_c);
     }
-    else if (isInt())
+    if (isInt(s))
     {
-        _i = std::stoi(_s, NULL, 10);
+        std::istringstream(s) >> _i;;
         _c = static_cast<char>(_i);
         _f = static_cast<float>(_i);
         _d = static_cast<double>(_i);
     }
-    else if (isFloat())
+    if (isFloat(s))
     {
-        _f = std::stof(_s, NULL);
+        std::istringstream(s) >> _f;
         _c = static_cast<char>(_f);
         _i = static_cast<int>(_f);
         _d = static_cast<double>(_f);
     }
-    else if (isDouble())
+    if (isDouble(s))
     {
-        _d = std::stod(_s, NULL);
+        std::istringstream(s) >> _d;
         _c = static_cast<char>(_d);
         _i = static_cast<int>(_d);
         _f = static_cast<float>(_d);
@@ -92,106 +98,126 @@ void    ScalarConverter::printValues(char c, int i, float f, double d,
         std::cout << d << std::endl;
 }
 
-bool    ScalarConverter::isChar(void)
+
+void    ScalarConverter::checks(std::string s, char &_c, int &_i, float &_f, double &_d)
 {
-    if (_s.size() == 1 && isalpha(_s.at(0)) && isprint(_s.at(0)))
+    std::string null;
+    std::stringstream ssF;
+    std::stringstream ssD;
+    
+    ssF << _f;
+    if (_f == _i)
+        ssF << (".0");
+    ssF << ("f");
+    ssD << _d;
+    if (_f == _i)
+        ssD << (".0");
+    if (isNan(s))
+        printValues(_c, _i, _f, _d, "impossible", "impossible", "nanf", "nan");
+    else if (isPosInf(s))
+        printValues(_c, _i, _f, _d, "impossible", "impossible", "+inff", "+inf");
+    else if (isNegInf(s))
+        printValues(_c, _i, _f, _d, "impossible", "impossible", "-inff", "-inf");
+    else if (isZero(s))
+        printValues(_c, _i, _f, _d, "Non displayable", null, ssF.str(), ssD.str());
+    else if (isInt(s) || isFloat(s) || isDouble(s))
+        printValues(_c, _i, _f, _d, "*", null, ssF.str(), ssD.str());
+
+    else if (isChar(s) || isInt(s) || isFloat(s) || isDouble(s))
+        printValues(_c, _i, _f, _d, null, null, ssF.str(), ssD.str());
+    else
+        printValues(_c, _i, _f, _d, "impossible", "impossible", "impossible", "impossible");
+}
+
+bool    ScalarConverter::isChar(std::string s)
+{
+    if (s.size() == 1 && isalpha(s.at(0)) && isprint(s.at(0)))
         return true;
     return false;
 }
 
-bool    ScalarConverter::isInt(void)
+bool    ScalarConverter::isInt(std::string s)
 {
-    for (int i = 0; i < _s.size(); i++)
+    for (size_t i = 0; i < s.size(); i++)
     {
-        if (i == 0 && (_s.at(i) == '-' || _s.at(i) == '+'))
+        if (i == 0 && (s.at(i) == '-' || s.at(i) == '+'))
             continue ;
-        else if (!isdigit(_s.at(i)))
+        else if (!isdigit(s.at(i)))
             return false ;
     }
     return true;
 }
 
-bool    ScalarConverter::isFloat(void)
+bool    ScalarConverter::isFloat(std::string s)
 {
     int countPoints = 0;
 
-    if (_s.at(_s.size()) != 'f')
+    if (s.at(s.size() - 1) != 'f')
         return false;
-    for (int i = 0; i < _s.size() - 1; i++)
+    for (size_t i = 0; i < s.size() - 1; i++)
     {
-        if (i == 0 && (_s.at(i) == '-' || _s.at(i) == '+'))
+        if (i == 0 && (s.at(i) == '-' || s.at(i) == '+'))
             continue ;
-        else if (_s.at(i) == '.')
+        else if (s.at(i) == '.')
         {
-            if (i > 0 && (!isdigit(_s.at(i - 1)) || !isdigit(_s.at(i + 1))))
+            if (i > 0 && (!isdigit(s.at(i - 1)) || !isdigit(s.at(i + 1))))
                 return false;
             countPoints++;
             if (countPoints > 1)
                 return false;
         }
-        else if (!isdigit(_s.at(i)))
+        else if (!isdigit(s.at(i)))
             return false ;
     }
     return true;
 }
 
-bool    ScalarConverter::isDouble(void)
+bool    ScalarConverter::isDouble(std::string s)
 {
     int countPoints = 0;
     
-    for (int i = 0; i < _s.size(); i++)
+    for (size_t i = 0; i < s.size(); i++)
     {
-        if (i == 0 && (_s.at(i) == '-' || _s.at(i) == '+'))
+        if (i == 0 && (s.at(i) == '-' || s.at(i) == '+'))
             continue ;
-        else if (_s.at(i) == '.')
+        else if (s.at(i) == '.')
         {
-            if (i > 0 && (i + 1 < _s.size()) && (!isdigit(_s.at(i - 1)) || !isdigit(_s.at(i + 1))))
+            if (i > 0 && (i + 1 < s.size()) && (!isdigit(s.at(i - 1)) || !isdigit(s.at(i + 1))))
                 return false;
             countPoints++;
             if (countPoints > 1)
                 return false;
         }
-        else if (!isdigit(_s.at(i)))
+        else if (!isdigit(s.at(i)))
             return false ;
     }
     return true;
 }
 
-bool    ScalarConverter::isImpossibleChar(void)
+bool    ScalarConverter::isZero(std::string s)
 {
-    if (isNan() || isPosInf() || isNegInf())
+    if (!s.compare("0") || !s.compare("0.0f") || !s.compare("0.0"))
         return true;
     return false;
 }
 
-bool    ScalarConverter::isImpossibleInt(void)
+bool    ScalarConverter::isNan(std::string s)
 {
-    if (isNan())
+    if (!s.compare("nan") || !s.compare("nanf"))
         return true;
     return false;
 }
 
-bool    ScalarConverter::isImpossibleFloat(void) {}
-
-bool    ScalarConverter::isImpossibleDouble(void) {}
-
-bool    ScalarConverter::isNan(void)
+bool    ScalarConverter::isNegInf(std::string s)
 {
-    if (_s.compare("nan") || _s.compare("nanf"))
+    if (!s.compare("-inf") || !s.compare("-inff"))
         return true;
     return false;
 }
 
-bool    ScalarConverter::isNegInf(void)
+bool    ScalarConverter::isPosInf(std::string s)
 {
-    if (_s.compare("-inf") || _s.compare("-inff"))
-        return true;
-    return false;
-}
-
-bool    ScalarConverter::isPosInf(void)
-{
-    if (_s.compare("+inf") || _s.compare("+inff"))
+    if (!s.compare("+inf") || !s.compare("+inff"))
         return true;
     return false;
 }
