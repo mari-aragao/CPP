@@ -15,11 +15,11 @@
 #include <iostream>
 #include <string>
 #include <sstream>
+#include <limits.h>
 
 class ScalarConverter
 {
 public:
-    ScalarConverter(void);
     ScalarConverter(std::string s);
     ScalarConverter(ScalarConverter const &sc);
     ~ScalarConverter(void);
@@ -37,6 +37,12 @@ public:
     static bool    isNan(std::string s);
     static bool    isNegInf(std::string s);
     static bool    isPosInf(std::string s);
+    static std::string isIntLimit(std::string s, int i);
+    static std::string isFloatLimit(std::string s); 
+    static std::string isDoubleLimit(std::string s); 
+
+private:
+    ScalarConverter(void);
 };
 
 #endif

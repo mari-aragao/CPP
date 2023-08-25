@@ -119,14 +119,42 @@ void    ScalarConverter::checks(std::string s, char &_c, int &_i, float &_f, dou
     else if (isNegInf(s))
         printValues(_c, _i, _f, _d, "impossible", "impossible", "-inff", "-inf");
     else if (isZero(s))
-        printValues(_c, _i, _f, _d, "Non displayable", null, ssF.str(), ssD.str());
+        printValues(_c, _i, _f, _d, "Non displayable", isIntLimit(s, _i), isFloatLimit(ssF.str()), isDoubleLimit(ssD.str()));
     else if (isInt(s) || isFloat(s) || isDouble(s))
-        printValues(_c, _i, _f, _d, "*", null, ssF.str(), ssD.str());
-
+        printValues(_c, _i, _f, _d, "*", isIntLimit(s, _i), isFloatLimit(ssF.str()), isDoubleLimit(ssD.str()));
     else if (isChar(s) || isInt(s) || isFloat(s) || isDouble(s))
-        printValues(_c, _i, _f, _d, null, null, ssF.str(), ssD.str());
+        printValues(_c, _i, _f, _d, null, isIntLimit(s, _i), isFloatLimit(ssF.str()), isDoubleLimit(ssD.str()));
     else
         printValues(_c, _i, _f, _d, "impossible", "impossible", "impossible", "impossible");
+}
+
+std::string ScalarConverter::isIntLimit(std::string s, int i)
+{
+    if (i == INT_MIN)
+    {
+        if (s.at(0) == '-')
+            return ("INT_MIN");
+        else
+            return ("INT_MAX");
+    }
+    std::string null;
+    return (null);
+}
+
+std::string ScalarConverter::isFloatLimit(std::string s)
+{
+    if (s == "inff")
+        return ("+inff");
+    return (s);
+}
+
+std::string ScalarConverter::isDoubleLimit(std::string s)
+{
+    if (s == "-1.79769e+308")
+        return ("-inf");
+    else if (s == "1.79769e+308")
+        return ("+inf");
+    return (s);
 }
 
 bool    ScalarConverter::isChar(std::string s)

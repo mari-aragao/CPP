@@ -1,9 +1,9 @@
 NAME = ex00
 
-CXX = c++;
+CXX = c++
 
 SRCS =	main.cpp \
-		ScalarConverter.cpp \
+		ScalarConverter.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 
