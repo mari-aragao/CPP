@@ -35,6 +35,16 @@ int main(void)
     std::cout << "arrayI[1] = " << arrayI[1] << " and arrayI_cpy[1] = " << arrayI_cpy[1] << std::endl; 
     std::cout << "arrayI[2] = " << arrayI[2] << " and arrayI_cpy[2] = " << arrayI_cpy[2] << std::endl; 
     
+    Array<Array<int> > arrayAI(1);
+    std::cout << std::endl << "Array of array of ints size = " << arrayAI.size() << std::endl;
+    arrayAI[0] = arrayI;
+    std::cout << "arrayAI[0][0] = " << arrayAI[0][0] << std::endl;
+    std::cout << "arrayAI[0][1] = " << arrayAI[0][1] << std::endl;
+    std::cout << "arrayAI[0][2] = " << arrayAI[0][2] << std::endl;
+    std::cout << "Try to change arrayAI[1][0] : ";
+    try {arrayAI[1][0] =  1;}
+    catch (std::exception &e) {std::cerr << e.what() << std::endl;}
+    
     Array<char> arrayC(2);
     std::cout << std::endl << "Array of chars size = " << arrayC.size() << std::endl;
     arrayC[0] = '4';
@@ -54,6 +64,5 @@ int main(void)
     std::cout << "Try to change arrayS[2] : ";
     try {arrayS[2] = "fail";}
     catch (std::exception &e) {std::cerr << e.what() << std::endl;}
-    
     return 0;
 }
