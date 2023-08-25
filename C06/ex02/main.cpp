@@ -12,20 +12,9 @@
 
 #include "Base.hpp"
 
-Base    *createAClass(void)
-{
-    return (new A);
-}
-
-Base    *createBClass(void)
-{
-    return (new B);
-}
-
-Base    *createCClass(void)
-{
-    return (new C);
-}
+Base    *createAClass(void) {return (new A);}
+Base    *createBClass(void) {return (new B);}
+Base    *createCClass(void) {return (new C);}
 
 Base    *generate(void)
 {
