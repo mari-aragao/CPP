@@ -21,13 +21,15 @@
 class Serializer
 {
 public:
-    Serializer(void);
     Serializer(Serializer const &s);
     ~Serializer(void);
     Serializer  &operator=(Serializer const &s);
     
     static uintptr_t   serialize(Data *ptr);
     static Data*       deserialize(uintptr_t raw);
+
+private:
+    Serializer(void);
 };
 
 #endif
