@@ -14,14 +14,10 @@
 #define WHATEVER_HPP
 
 template <typename T>
-
 class   Whatever
 {
 public:
-    Whatever<T>(T const & t)
-    {
-        _t = t;
-    }
+    Whatever<T>(T const & t) {_t = t;}
     Whatever<T>(Whatever<T> const & w) {*this = w;}
     ~Whatever<T>(void) {}
     Whatever<T>  &operator=(Whatever<T> const & w)

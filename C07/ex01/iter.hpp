@@ -18,29 +18,18 @@
 template <typename T>
 void    printValue(T &t)
 {
-    std::cout << t << ' ';
-};
-
-template <typename T>
-void    doubleValue(T &t)
-{
-    t *= 2;
-};
-
-template <typename T>
-void    halfValue(T &t)
-{
-    t /= 2;
-};
-
-template <typename T>
-void    plusOne(T &t)
-{
-    t += 1;
+    std::cout << t << std::endl;
 };
 
 template <typename T>
 void    iter(T *t, size_t size, void (*func)(T&))
+{
+    for (size_t count = 0; count < size; count++)
+        func(*(t + count));
+};
+
+template <typename T>
+void    iter(T *t, size_t size, void (*func)(T const &))
 {
     for (size_t count = 0; count < size; count++)
         func(*(t + count));
