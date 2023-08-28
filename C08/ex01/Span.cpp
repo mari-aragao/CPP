@@ -41,6 +41,13 @@ void    Span::addNumber(int num)
     _container.push_back(num);
 }
 
+
+void    Span::fillRandomContainer(void)
+{
+    for (unsigned int i = 0; i < _n; i++)
+        _container.insert(_container.begin() + i, rand());
+}
+
 int     Span::shortestSpan(void)
 {
     if (_container.size() == 0 || _container.size() == 1)

@@ -16,6 +16,7 @@
 #include <vector>
 #include <algorithm>
 #include <stdexcept>
+#include <cstdlib>
 
 class Span
 {
@@ -25,6 +26,7 @@ public:
     Span &operator=(Span const &s);
 
     void    addNumber(int num);
+    void    fillRandomContainer(void);
     int     shortestSpan(void);
     int     longestSpan(void);
 

@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "Span.hpp"
-#include <cstdlib>
 
 int main(void)
 {
@@ -46,8 +45,7 @@ int main(void)
     {
         std::cout << std::endl << "*** Creating a Span with n = 100000 ***" << std::endl;
         Span    s(100000);
-        for (int i = 0; i < 100000; i++)
-            s.addNumber(rand());
+        s.fillRandomContainer();
         try {s.addNumber(rand());}
         catch(std::exception &e) {std::cerr << e.what() << std::endl;}
         try {std::cout << "Shortest span = " << s.shortestSpan() << std::endl;}
