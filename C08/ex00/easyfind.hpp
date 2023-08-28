@@ -16,7 +16,6 @@
 #include <vector>
 #include <algorithm>
 #include <stdexcept>
-#include <forward_list>
 
 class   ElementNotFound : public std::exception
 {
@@ -31,7 +30,7 @@ void    easyfind(T &t, int n)
 {
     if (std::find(t.begin(), t.end(), n) == t.end())
         throw ElementNotFound();
-    std::cout << "Element found" << std::endl;
+    std::cout << "Element found: " << n << std::endl;
 }
 
 #endif
