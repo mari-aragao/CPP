@@ -40,7 +40,8 @@ void    BitcoinExchange::setDatabase(std::ifstream &database)
             aux.erase(aux.begin(), aux.begin() + end + 1);
             end = aux.find(",");
         }
-        if (i != 1) {throw std::invalid_argument("Error: wrong database format.");}
+        if (i != 1)
+        {throw std::invalid_argument("Error: wrong database format.");}
         std::stringstream ss(line);
         while(std::getline(ss, token, ','))
         {
@@ -64,6 +65,7 @@ void    BitcoinExchange::Exchange(std::ifstream &input)
     std::getline(input, line);
     while (std::getline(input, line))
     {
+        date.clear();
         int i = 0;
         std::string aux = line;
         int end = aux.find("|");
@@ -75,7 +77,6 @@ void    BitcoinExchange::Exchange(std::ifstream &input)
         }
         if (i != 1)
         {std::cout<< "Error: bad input => " << line << std::endl; continue;}
-        
         std::stringstream ss(line);
         while(std::getline(ss, token, '|'))
         {
@@ -84,12 +85,11 @@ void    BitcoinExchange::Exchange(std::ifstream &input)
             else
                 std::istringstream(token) >> value;
         }
-        
         int year, month, day;
-        i = 0;
         ss.clear();
         ss.str("");
         ss << date;
+        i = 0;
         while (std::getline(ss, aux, '-'))
         {
             if (i == 0) {std::istringstream(aux) >> year;}
@@ -98,19 +98,16 @@ void    BitcoinExchange::Exchange(std::ifstream &input)
             aux.clear();
             i++;
         }
-        if (i != 3)  {std::cout<< "Error: bad input => " << line << std::endl; continue;}
-        else if (year < 2009 || year > 2023 || month < 1 || month > 12 || day < 1 || day > 31)
+        if (i != 3 || year < 2009 || year > 2023 ||
+                month < 1 || month > 12 || day < 1 || day > 31)
         {std::cout<< "Error: bad input => " << line << std::endl; continue;}
         else if (value < 0) 
         {std::cout << "Error: not a positive number." << std::endl; continue;}
         else if (value > 1000) 
         {std::cout << "Error: too large number." << std::endl; continue;}
-        
         float result = calculateExchange(year, month, day, value);
-        if (result == -1)
-        {std::cout << "Error: not found." << std::endl; continue;}
-        std::cout << date << " => " << value << " = " << result << std::endl;
-        date.clear();
+        if (result != -1)
+            std::cout << date << " => " << value << " = " << result << std::endl;
     }
 }
 
@@ -126,22 +123,20 @@ float   BitcoinExchange::calculateExchange(int year, int month, int day, float v
         while (std::getline(ss, aux, '-'))
         {
             if (i == 0) {std::istringstream(aux) >> yearDb;}
-            if (i == 1) {std::istringstream(aux) >> monthDb;}
-            if (i == 2) {std::istringstream(aux) >> dayDb;}
+            else if (i == 1) {std::istringstream(aux) >> monthDb;}
+            else if (i == 2) {std::istringstream(aux) >> dayDb;}
             aux.clear();
             i++;
         }
-        if (year == yearDb && month == monthDb && day < dayDb)
+        if ((year == yearDb && month == monthDb && day < dayDb) ||
+                (year == yearDb && month < monthDb))
             continue;
-        else if (year == yearDb && month < monthDb)
-            continue ;
-        else if (year == yearDb && month == monthDb && day >= dayDb)
-            return (it->second * value);
-        else if (year > yearDb && month < monthDb)
-            return (it->second * value);
-        else if (year == yearDb && month > monthDb)
+        else if ((year == yearDb && month == monthDb && day >= dayDb) ||
+                (year > yearDb && month < monthDb) ||
+                (year == yearDb && month > monthDb))
             return (it->second * value);
     }
+    std::cout << "Error: not found." << std::endl;
     return (-1);
 }
 
