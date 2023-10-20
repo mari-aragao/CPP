@@ -6,7 +6,7 @@
 /*   By: maragao <maragao@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 22:09:13 by maragao           #+#    #+#             */
-/*   Updated: 2023/08/24 22:09:13 by maragao          ###   ########.fr       */
+/*   Updated: 2023/10/20 17:54:43 by maragao          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #define ARRAY_HPP
 #include <stdexcept>
 #include <iostream>
+#include <cstdlib>
 
 template <typename T>
 
