@@ -37,12 +37,17 @@ void    BitcoinExchange::setDatabase(std::ifstream &database)
         while (end != -1)
         {
             i++;
+            if (aux.size() == (size_t)(end + 1))
+            {throw std::invalid_argument("Error: wrong database format.");}    
+            if (end == 0)
+            {throw std::invalid_argument("Error: wrong database format.");}    
             aux.erase(aux.begin(), aux.begin() + end + 1);
             end = aux.find(",");
         }
         if (i != 1)
         {throw std::invalid_argument("Error: wrong database format.");}
         std::stringstream ss(line);
+        
         while(std::getline(ss, token, ','))
         {
             if (date.empty())

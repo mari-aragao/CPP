@@ -20,13 +20,13 @@ int main(int argc, char **argv)
 {
     std::ifstream database;
     std::ifstream input;
+
     try{if (argc != 2) throw std::invalid_argument("Error: could not open file.");}
     catch (std::exception &e) {std::cerr << e.what() << std::endl; return (-1);}    
     input.open(argv[1], std::ofstream::in);
-    if (!input) {std::cerr << "Error: invalid input" << std::endl; return (-1);}
+    if (!input) {std::cerr << "Error: could not open file." << std::endl; return (-1);}
     database.open("data.csv", std::ofstream::in);
     if (!database) {std::cerr << "Error: invalid database" << std::endl; return (-1);}
-
     try {BitcoinExchange be(database, input);}
     catch (std::exception &e) {std::cerr << e.what() << std::endl; return (-1);}
 
