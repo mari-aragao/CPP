@@ -6,7 +6,7 @@
 /*   By: maragao <maragao@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 12:23:38 by maragao           #+#    #+#             */
-/*   Updated: 2023/08/24 12:23:38 by maragao          ###   ########.fr       */
+/*   Updated: 2023/10/20 17:56:43 by maragao          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,3 +31,27 @@ int main(void)
     std::cout << std::endl;
     return 0;
 }
+/*
+class Awesome
+{
+  public:
+    Awesome( void ) : _n( 42 ) { return; }
+    int get( void ) const { return this->_n; }
+  private:
+    int _n;
+};
+
+std::ostream & operator<<( std::ostream & o, Awesome const & rhs ) { o << rhs.get(); return o; }
+
+template< typename T >
+void print( T const & x ) { std::cout << x << std::endl; return; }
+
+int main() {
+  int tab[] = { 0, 1, 2, 3, 4 }; 
+  Awesome tab2[5];
+
+  iter( tab, 5, print<int> );
+  iter( tab2, 5, print<Awesome> );
+
+  return 0;
+}*/
