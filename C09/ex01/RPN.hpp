@@ -30,8 +30,7 @@ public:
     class ExceptionError : public std::exception
     {
     public:
-        virtual const char* what() const throw()
-        {return ("Error");}
+        virtual const char* what() const throw();
     };
 
 private:

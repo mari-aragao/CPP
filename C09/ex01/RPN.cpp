@@ -66,3 +66,5 @@ int RPN::calculateRPN(std::string arg)
 RPN::RPN(void) {}
 
 RPN::RPN(RPN const &rpn) {*this = rpn;}
+
+const char* RPN::ExceptionError::what() const throw() {return ("Error");}

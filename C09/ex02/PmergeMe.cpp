@@ -181,3 +181,5 @@ void    printSequence(std::deque<int> dqe)
     }
     std::cout << std::endl;
 }
+
+const char *InvalidArgument::what() const throw() {return ("Error: Invalid argument");}

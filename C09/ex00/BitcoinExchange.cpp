@@ -26,7 +26,7 @@ void    BitcoinExchange::setDatabase(std::ifstream &database)
     std::string line;
     std::string token;
     std::string date;
-    float       value;
+    long double       value;
 
     std::getline(database, line);
     while (std::getline(database, line))
@@ -55,7 +55,7 @@ void    BitcoinExchange::setDatabase(std::ifstream &database)
             else
                 std::istringstream(token) >> value;
         }
-        _database.insert(std::pair<std::string, float>(date, value));
+        _database.insert(std::pair<std::string, long double>(date, value));
         date.clear();
     }
 }
@@ -65,7 +65,7 @@ void    BitcoinExchange::Exchange(std::ifstream &input)
     std::string line;
     std::string token;
     std::string date;
-    float       value;
+    long double       value;
 
     std::getline(input, line);
     while (std::getline(input, line))
@@ -77,6 +77,9 @@ void    BitcoinExchange::Exchange(std::ifstream &input)
         while (end != -1)
         {
             i++;
+            if (aux.size() == (size_t)(end + 1) ||
+                (aux.size() == (size_t)(end + 2) && aux.at(end + 1) == ' '))
+            {i = 0; break;}
             aux.erase(aux.begin(), aux.begin() + end + 1);
             end = aux.find("|");
         }
@@ -110,17 +113,17 @@ void    BitcoinExchange::Exchange(std::ifstream &input)
         {std::cout << "Error: not a positive number." << std::endl; continue;}
         else if (value > 1000) 
         {std::cout << "Error: too large number." << std::endl; continue;}
-        float result = calculateExchange(year, month, day, value);
+        long double result = calculateExchange(year, month, day, value);
         if (result != -1)
             std::cout << date << " => " << value << " = " << result << std::endl;
     }
 }
 
-float   BitcoinExchange::calculateExchange(int year, int month, int day, float value)
+long double   BitcoinExchange::calculateExchange(int year, int month, int day, long double value)
 {
     int yearDb, monthDb, dayDb;
     std::string aux;
-    std::map<std::string, float>::iterator it = _database.end();
+    std::map<std::string, long double>::iterator it = _database.end();
     while(--it != _database.begin())
     {
         int i = 0;

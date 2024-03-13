@@ -23,8 +23,8 @@
 class InvalidArgument : public std::exception
 {
 public:
-    virtual const char *what() const throw()
-    {return ("Error: Invalid argument");}
+    virtual const char *what() const throw();
+
 };
 
 void    merge(std::vector<int> &left, std::vector<int> &right, std::vector<int> &vct);

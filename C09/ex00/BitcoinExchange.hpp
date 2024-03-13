@@ -28,11 +28,11 @@ public:
     BitcoinExchange &operator=(BitcoinExchange const &be);
 
 private:
-    std::map<std::string, float> _database;
+    std::map<std::string, long double> _database;
     
     void    setDatabase(std::ifstream &database);
     void    Exchange(std::ifstream &input);
-    float   calculateExchange(int year, int month, int day, float f);
+    long double   calculateExchange(int year, int month, int day, long double f);
     BitcoinExchange(void);
     BitcoinExchange(BitcoinExchange const &be);
 };
