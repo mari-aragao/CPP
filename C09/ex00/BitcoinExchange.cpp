@@ -6,7 +6,7 @@
 /*   By: maragao <maragao@student.42.rio>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 02:52:36 by maragao           #+#    #+#             */
-/*   Updated: 2023/08/29 02:52:36 by maragao          ###   ########.fr       */
+/*   Updated: 2024/03/13 17:02:02 by maragao          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,10 @@ void    BitcoinExchange::Exchange(std::ifstream &input)
     long double       value;
 
     std::getline(input, line);
+    if(line.empty())
+    {throw std::invalid_argument("Error: empty file.");}
+    if (line != "date | value")
+    {throw std::invalid_argument("Error: wrong header.");}
     while (std::getline(input, line))
     {
         date.clear();
@@ -86,12 +90,37 @@ void    BitcoinExchange::Exchange(std::ifstream &input)
         if (i != 1)
         {std::cout<< "Error: bad input => " << line << std::endl; continue;}
         std::stringstream ss(line);
+        std::string teste;
+        int error = 0;
         while(std::getline(ss, token, '|'))
         {
+            size_t first_space;
+            size_t last_space;
             if (date.empty())
-                date = token;
+            {
+                first_space = token.find_first_not_of(' ');
+                last_space = token.find_last_not_of(' ');
+                date = token.substr(first_space, (last_space - first_space + 1));
+                for (int j = 0; date[j]; j++)
+                {
+                    if (date[j] == ' ' || (date[j] != '-' && !std::isdigit(date.at(j))))
+                        error = 1;
+                }
+            }
             else
+            {
+                first_space = token.find_first_not_of(' ');
+                last_space = token.size() - 1;
+                while (token.at(last_space) == ' ')
+                    last_space--;
+                token = token.substr(first_space, last_space - first_space + 1);
+                for (int j = 0; token[j]; j++)
+                {
+                    if (token[j] != '.' && !std::isdigit(token[j]))
+                        error = 1; 
+                }
                 std::istringstream(token) >> value;
+            }
         }
         int year, month, day;
         ss.clear();
@@ -113,6 +142,8 @@ void    BitcoinExchange::Exchange(std::ifstream &input)
         {std::cout << "Error: not a positive number." << std::endl; continue;}
         else if (value > 1000) 
         {std::cout << "Error: too large number." << std::endl; continue;}
+        else if (error == 1)
+        {std::cout<< "Error: bad input => " << line << std::endl; continue;}
         long double result = calculateExchange(year, month, day, value);
         if (result != -1)
             std::cout << date << " => " << value << " = " << result << std::endl;
